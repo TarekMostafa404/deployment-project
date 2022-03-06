@@ -1,68 +1,97 @@
 version: 2.1
-orbs:
-  node: circleci/node@1.1.6
-  aws-s3: circleci/aws-s3@1.0.15
-executors:
-  my-node:
-    docker:
-      - image: 'cimg/node:16.14'
+
 jobs:
-  test-and-build:
-    executor: my-node
+  deploy:
+    docker:
+      - image: cimg/node:16.14
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            # - run: npm test
-      - run: npm run build
-      - node/install
-      - checkout
-      - run: node --version
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
       - run:
-          name: Front-End Install
-          command: |
-            npm run frontend:install
-      - run:
-          name: Back-End Install
-          command: |
-            npm run backend:install
-      - run:
-          name: Front-End Build
-          command: |
-            npm run frontend:build
-      - run:
-          name: Back-End Build
-          command: |
-            npm run backend:build
-      - persist_to_workspace:
-          root: ~/
+          name: Install Dependencies
+          command: npm inastall
+      - save_cache:
           paths:
-            - udagram-frontend/www
-  deploy-to-s3:
-    machine:
-      image: circleci/classic:latest
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/
-      - aws-s3/sync:
-          arguments: |
-            --acl public-read \
-            --cache-control "max-age=86400"
-          from: www
-          to: 's3://fullstack-udagram'
-          overwrite: true # default is false
-workflows:
-  build-and-deploy:
-    jobs:
-      - test-and-build
-      - deploy-to-s3:
-          requires:
-            - test-and-build
-          filters:
-            branches:
-              only: master
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Run Tests
+          command: npm run test
+
+      - run:
+          name: Run Build
+          command: npm run build
+# ==================================================
+# version: 2.1
+# orbs:
+#   node: circleci/node@1.1.6
+#   aws-s3: circleci/aws-s3@1.0.15
+# executors:
+#   my-node:
+#     docker:
+#       - image: 'cimg/node:16.14'
+# jobs:
+#   test-and-build:
+#     executor: my-node
+#     steps:
+#       # - checkout
+#       # - node/with-cache:
+#       #     steps:
+#       #       - run: npm install
+#       #       - run: npm test
+#       # - run: npm run build
+#       # - node/install
+#       - checkout
+#       - run: node --version
+#       - run:
+#           name: Front-End Install
+#           command: |
+#             npm run frontend:install
+#       - run:
+#           name: Back-End Install
+#           command: |
+#             npm run backend:install
+#       - run:
+#           name: Front-End Build
+#           command: |
+#             npm run frontend:build
+#       - run:
+#           name: Back-End Build
+#           command: |
+#             npm run backend:build
+#       - persist_to_workspace:
+#           root: ~/
+#           paths:
+#             - udagram-frontend/www
+#   deploy-to-s3:
+#     machine:
+#       image: circleci/classic:latest
+#     steps:
+#       - checkout
+#       - attach_workspace:
+#           at: ~/
+#       - aws-s3/sync:
+#           arguments: |
+#             --acl public-read \
+#             --cache-control "max-age=86400"
+#           from: www
+#           to: 's3://fullstack-udagram'
+#           overwrite: true # default is false
+# workflows:
+#   build-and-deploy:
+#     jobs:
+#       - test-and-build
+#       - deploy-to-s3:
+#           requires:
+#             - test-and-build
+#           filters:
+#             branches:
+#               only: master
+# ============================================================
 # version: 2.1
 # orbs:
 #   node: circleci/node@4.1.0
