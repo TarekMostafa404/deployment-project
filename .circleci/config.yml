@@ -38,7 +38,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - project/build
+            - udagram-frontend/www
   deploy-to-s3:
     machine:
       image: circleci/classic:latest
@@ -50,7 +50,7 @@ jobs:
           arguments: |
             --acl public-read \
             --cache-control "max-age=86400"
-          from: build
+          from: www
           to: 's3://fullstack-udagram'
           overwrite: true # default is false
 workflows:
