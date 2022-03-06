@@ -7,37 +7,42 @@ jobs:
     docker:
       - image: cimg/node:16.14
     steps:
+      - node/install
       - checkout
       - aws-cli/setup
 
       - run:
-          name: Run install frontend
+          name: Frontend install
           command: npm run frontend:install
 
       - run:
-          name: Run Build frontend
+          name: Frontend Build
           command: npm run frontend:build
 
       - run:
-          name: Run install backend
+          name: Backend install
           command: npm run backend:install
 
       - run:
-          name: Run Build backend
+          name: Backend Build
           command: npm run backend:build
-
-  deploy:
-    docker:
-      - image: cimg/node:16.14
-    steps:
-      - checkout
 
       - run:
           name: Run deploy
           command: npm run frontend:deploy
 
+  # deploy:
+  #   docker:
+  #     - image: cimg/node:16.14
+  #   steps:
+  #     - checkout
+
+  #     - run:
+  #         name: Run deploy
+  #         command: npm run frontend:deploy
+
 workflows:
   udagram:
     jobs:
       - build
-      - deploy
+      # - deploy
