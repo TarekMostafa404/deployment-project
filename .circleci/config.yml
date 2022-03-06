@@ -26,14 +26,13 @@ jobs:
           name: Back-End Build
           command: |
             npm run backend:build
-
-  deploy_project:
-    executor: aws-cli/default
-    steps:
-      - attach_workspace:
-          at: .
-      - aws-cli/setup:
-          profile-name: default
+  # deploy_project:
+  #   executor: aws-cli/default
+  #   steps:
+  #     - attach_workspace:
+  #         at: .
+  #     - aws-cli/setup:
+  #         profile-name: default
       - run:
           name: Upload file to S3
           command: aws s3 sync ./www/ s3://fullstack-udagram --delete
