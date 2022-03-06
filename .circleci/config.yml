@@ -46,8 +46,8 @@ workflows:
   udacity project:
   jobs:
     - deploy
-        requires: 
-          - deploy
+        # requires: 
+        #   - deploy
           filters:
             branches:
               only: master
