@@ -15,12 +15,20 @@ jobs:
           command: npm run frontend:install
 
       - run:
+          name: Frontend Test
+          command: npm run frontend:test
+
+      - run:
           name: Frontend Build
           command: npm run frontend:build
-
+      
       - run:
           name: Backend install
           command: npm run backend:install
+
+      - run:
+          name: Backend Test
+          command: npm run backend:test
 
       - run:
           name: Backend Build
@@ -30,7 +38,14 @@ jobs:
           name: Run deploy
           command: npm run frontend:deploy
 
+      - run:
+          name: Upload file to S3
+          command: aws s3 sync ./dist/ s3://fullstack-udagram --delete
+
 workflows:
   udacity project:
     jobs:
       - build and deploy
+        filters:
+            branches:
+              only: master
