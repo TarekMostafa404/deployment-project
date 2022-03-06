@@ -3,11 +3,10 @@ orbs:
   node: circleci/node@4.1.0
   aws-cli: circleci/aws-cli@1.3.1
 jobs:
-  build:
+  build and deploy:
     docker:
       - image: cimg/node:16.14
     steps:
-      # - node/install
       - checkout
       - aws-cli/setup
 
@@ -31,18 +30,7 @@ jobs:
           name: Run deploy
           command: npm run frontend:deploy
 
-  # deploy:
-  #   docker:
-  #     - image: cimg/node:16.14
-  #   steps:
-  #     - checkout
-
-  #     - run:
-  #         name: Run deploy
-  #         command: npm run frontend:deploy
-
 workflows:
-  udagram:
+  udacity project:
     jobs:
-      - build
-      # - deploy
+      - build and deploy
