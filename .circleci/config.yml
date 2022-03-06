@@ -6,6 +6,8 @@ jobs:
   deploy:
     docker:
       - image: cimg/node:16.14
+      environment:
+      - CHROME_BIN: /usr/bin/google-chrome
     steps:
       - checkout
       - aws-cli/setup
