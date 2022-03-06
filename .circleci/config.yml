@@ -44,7 +44,7 @@ jobs:
 
 workflows:
   udacity project:
-    jobs:
+  jobs:
     - build-deploy
         # requires: 
         #   - build-deploy
