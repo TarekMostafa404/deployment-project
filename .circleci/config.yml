@@ -25,6 +25,11 @@ jobs:
       - run:
           name: Run Build
           command: npm run build
+
+workflows:
+  build_deploy:
+    jobs:
+      - deploy
 # ==================================================
 # version: 2.1
 # orbs:
