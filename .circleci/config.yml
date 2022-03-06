@@ -6,25 +6,37 @@ jobs:
       - image: cimg/node:16.14
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-      - run:
-          name: Install Dependencies
-          command: npm install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+      # - restore_cache:
+      #     keys:
+      #       - v1-dependencies-{{ checksum "package.json" }}
+      #       - v1-dependencies-
+      # - run:
+      #     name: Install Dependencies
+      #     command: npm install
+      # - save_cache:
+      #     paths:
+      #       - node_modules
+      #     key: v1-dependencies-{{ checksum "package.json" }}
 
       # - run:
       #     name: Run Tests
       #     command: npm run test
 
       - run:
-          name: Run Build
-          command: npm run build
+          name: Run install frontend
+          command: npm run frontend:install
+
+      - run:
+          name: Run Build frontend
+          command: npm run frontend:build
+
+      - run:
+          name: Run install backend
+          command: npm run backend:install
+
+      - run:
+          name: Run Build backend
+          command: npm run backend:build
 
 workflows:
   build_deploy:
