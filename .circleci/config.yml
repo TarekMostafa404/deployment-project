@@ -1,7 +1,8 @@
 version: 2.1
 orbs:
   node: circleci/node@4.1.0
-  aws-cli: circleci/aws-cli@1.3.1
+  # aws-cli: circleci/aws-cli@1.3.1
+  aws-s3: circleci/aws-s3@1.0.15
 jobs:
   build:
     docker:
@@ -33,9 +34,23 @@ jobs:
   #         at: .
   #     - aws-cli/setup:
   #         profile-name: default
-      - run:
-          name: Install awscli
-          command: sudo pip install awscli
-      - run:
-          name: Upload file to S3
-          command: aws s3 sync ./www/ s3://fullstack-udagram --delete
+      # - run:
+      #     name: Install awscli
+      #     command: sudo pip install awscli
+      # - run:
+      #     name: Upload file to S3
+      #     command: aws s3 sync ./www/ s3://fullstack-udagram --delete
+  deploy-to-s3:
+    machine:
+      image: circleci/classic:latest
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - aws-s3/sync:
+          arguments: |
+            --acl public-read \
+            --cache-control "max-age=86400"
+          from: www
+          to: 's3://fullstack-udagram'
+          overwrite: true # default is false
