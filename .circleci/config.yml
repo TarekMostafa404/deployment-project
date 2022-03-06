@@ -15,12 +15,12 @@ jobs:
           command: npm run frontend:install
 
       - run:
-          name: Frontend Test
-          command: npm run frontend:test
-
-      - run:
           name: Frontend Build
           command: npm run frontend:build
+      
+      - run:
+          name: Frontend Test
+          command: npm run frontend:test
 
       - run:
           name: Backend install
