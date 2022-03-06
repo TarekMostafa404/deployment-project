@@ -1,1 +1,1 @@
-aws s3 cp --recursive --acl public-read ./build s3://fullstack-udagram/
+aws s3 cp --recursive --acl public-read ./www s3://fullstack-udagram/
