@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@1.1.6
-  aws-s3: circleci/aws-s3@3.0
+  aws-s3: circleci/aws-s3@1.0.15
 executors:
   my-node:
     docker:
@@ -34,7 +34,7 @@ jobs:
             - udagram-frontend/www
   deploy-to-s3:
     machine:
-      docker: 'cimg/python:3.6'
+      image: circleci/classic:latest
     steps:
       - checkout
       - attach_workspace:

@@ -40,9 +40,9 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: Create a Bucket Directory
-          command: mkdir bucket && echo "Hello World" > bucket/build_asset.txt
+      # - run:
+      #     name: Create a Bucket Directory
+      #     command: mkdir bucket && echo "Hello World" > bucket/build_asset.txt
 
       - aws-s3/sync:
           arguments: |
@@ -52,13 +52,13 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID_BLUE
           aws-region: AWS_REGION_BLUE
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY_BLUE
-          from: bucket
-          to: 's3://fullstack-udagram/prefix'
+          from: www
+          to: 's3://fullstack-udagram/'
 
-      - aws-s3/copy:
-          arguments: '--dryrun'
-          from: bucket/build_asset.txt
-          to: 's3://fullstack-udagram'
+      # - aws-s3/copy:
+      #     arguments: '--dryrun'
+      #     from: www/build_asset.txt
+      #     to: 's3://fullstack-udagram'
 
 workflows:
   Deployment Project:
