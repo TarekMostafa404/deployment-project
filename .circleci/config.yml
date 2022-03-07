@@ -52,7 +52,7 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID_BLUE
           aws-region: AWS_REGION_BLUE
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY_BLUE
-          from: www
+          from: udagram-frontend/www
           to: 's3://fullstack-udagram/'
 
       # - aws-s3/copy:
