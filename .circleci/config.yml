@@ -22,9 +22,9 @@ jobs:
           name: Frontend Build
           command: npm run frontend:build
 
-      # - run:
-      #     name: Frontend Test
-      #     command: npm run frontend:test
+      - run:
+          name: Frontend Test
+          command: npm run frontend:test
 
       - run:
           name: Backend Install
@@ -34,9 +34,9 @@ jobs:
           name: Backend Build
           command: npm run backend:install
 
-      # - run:
-      #     name: Backend Test
-      #     command: npm run backend:test
+      - run:
+          name: Backend Test
+          command: npm run backend:test
 
       - run:
           name: Frontend Deploy
