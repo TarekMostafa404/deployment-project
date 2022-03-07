@@ -19,13 +19,13 @@ jobs:
       - eb/setup
       - aws-cli/setup
 
-      - run:
-          name: Frontend Install
-          command: npm run frontend:install
+      # - run:
+      #     name: Frontend Install
+      #     command: npm run frontend:install
 
-      - run:
-          name: Frontend Build
-          command: npm run frontend:build
+      # - run:
+      #     name: Frontend Build
+      #     command: npm run frontend:build
 
       - run:
           name: Backend Install
@@ -49,6 +49,7 @@ jobs:
 
       - run:
           command: |
+              eb init
               eb deploy Udagram-env
               eb status
           working_directory: udagram/www
