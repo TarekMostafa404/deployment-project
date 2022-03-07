@@ -13,8 +13,8 @@ jobs:
 
     steps:
       - checkout
-      - aws-cli/setup
       - eb/setup
+      - aws-cli/setup
 
       - run:
           name: Frontend Install
