@@ -74,8 +74,7 @@ workflows:
       - build
       - deploy:
           requires:
-            - deploy
+            - build
         filters:
           branches:
-            only: master # Only deploy when the commit is on the Main branch
-
+            only: master
