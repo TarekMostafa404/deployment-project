@@ -53,8 +53,8 @@ jobs:
       - checkout
 
       - run:
-          name: Create a Bucket
-          command: mkdir bucket && echo "Hello World" > bucket/build_asset.txt
+          name: Create a Bucket Directory
+          command: mkdir bucket && echo "Hello World" > bucket/Archive.zip
 
       - aws-s3/sync:
           arguments: |
@@ -69,7 +69,7 @@ jobs:
 
       - aws-s3/copy:
           arguments: '--dryrun'
-          from: bucket/build_asset.txt
+          from: bucket/Archive.zip
           to: 's3://fullstack-udagram'
 
     workflows:
