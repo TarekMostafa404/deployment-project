@@ -9,10 +9,10 @@ jobs:
   build:
     docker:
       - image: cimg/node:16.14
-        parameters:
-          app-dir:
-            default: .
-            
+    parameters:
+      app-dir:
+        default: .
+        
     steps:
       - checkout
       - setup
