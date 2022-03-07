@@ -61,14 +61,12 @@ jobs:
       #     to: 's3://fullstack-udagram'
 
 workflows:
-  Deployment Project:
+  build-and-deploy:
     jobs:
       - build
-      - deploy
-
-      # - deploy:
-      #     requires:
-      #       - build
-filters:
-  branches:
-    only: master
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
