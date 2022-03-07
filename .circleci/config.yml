@@ -39,7 +39,7 @@ jobs:
 
       - run:
           name: Upload file to S3
-          command: aws s3 sync ./dist/ s3://fullstack-udagram --delete
+          command: aws s3 sync ./www/ s3://fullstack-udagram --delete
 
 workflows:
   udacity project:
