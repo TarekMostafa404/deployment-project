@@ -69,11 +69,11 @@ jobs:
           to: 's3://fullstack-udagram'
 
 workflows:
-  udacity project:
+  Deployment Project:
     jobs:
       - deploy:
           requires:
-            - build
+            - deploy
         filters:
           branches:
             only: master # Only deploy when the commit is on the Main branch
