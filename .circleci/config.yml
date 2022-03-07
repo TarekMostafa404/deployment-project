@@ -26,10 +26,6 @@ jobs:
       #     command: npm run frontend:test
 
       - run:
-          name: Frontend Test
-          command: npm run frontend:test
-
-      - run:
           name: Backend install
           command: npm run backend:install
 
@@ -49,3 +45,8 @@ workflows:
   udacity project:
     jobs:
       - deploy
+          requires:
+            - test-and-build
+          filters:
+            branches:
+              only: master
