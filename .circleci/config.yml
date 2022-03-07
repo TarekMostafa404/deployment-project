@@ -44,12 +44,12 @@ jobs:
           from: udagram-frontend/www
           to: 's3://fullstack-udagram/'
 
-      - run:
-          command: |
-              # eb create Udagram-env
-              eb deploy Udagram-env
-              eb status
-          working_directory: <<udagram/www>>
+      # - run:
+      #     command: |
+      #         # eb create Udagram-env
+      #         eb deploy Udagram-env
+      #         eb status
+      #     working_directory: <<udagram/www>>
 
 workflows:
   build-and-deploy:
