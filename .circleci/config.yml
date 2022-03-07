@@ -37,9 +37,9 @@ jobs:
           name: Run deploy
           command: npm run frontend:deploy
 
-      # - run:
-      #     name: Upload file to S3
-      #     command: aws s3 sync ./dist/ s3://fullstack-udagram --delete
+      - run:
+          name: Upload file to S3
+          command: aws s3 sync ./dist/ s3://fullstack-udagram --delete
 
 workflows:
   udacity project:
