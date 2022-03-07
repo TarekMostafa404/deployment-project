@@ -52,7 +52,7 @@ jobs:
               # eb create Udagram-env
               eb deploy Udagram-env
               eb status
-          working_directory: <<udagram/www>>
+          working_directory: udagram/www
 
 workflows:
   build-and-deploy:
