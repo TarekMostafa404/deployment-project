@@ -49,7 +49,7 @@ jobs:
               eb status
 
 workflows:
-  deploy project:
+  build-and-deploy:
     jobs:
       - build:
           filters:
