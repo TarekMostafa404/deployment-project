@@ -28,10 +28,6 @@ jobs:
           name: Backend Build
           command: npm run backend:build
 
-      # - run:
-      #     name: Frontend Deploy
-      #     command: npm run frontend:deploy
-
       - aws-s3/sync:
           arguments: |
             --acl public-read \
