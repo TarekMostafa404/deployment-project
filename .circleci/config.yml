@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - checkout
-      - setup
+      - eb/setup
       - aws-cli/setup
 
       - run:
@@ -49,7 +49,6 @@ jobs:
 
       - run:
           command: |
-              # eb create Udagram-env
               eb deploy Udagram-env
               eb status
           working_directory: udagram/www
