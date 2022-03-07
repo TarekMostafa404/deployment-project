@@ -43,10 +43,9 @@ jobs:
 
 workflows:
 udacity project:
-    jobs:
-      - deploy
-        requires:
-          - test-and-build
-        filters:
-          branches:
-            only: master
+  jobs:
+    - deploy        requires:
+        - test-and-build
+      filters:
+        branches:
+          only: master
