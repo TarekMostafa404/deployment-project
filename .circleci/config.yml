@@ -46,9 +46,9 @@ jobs:
 
           # from: udagram-frontend/www
           # to: 's3://fullstack-udagram/'
+    global:
+      default_region: us-east-1
 
-      - global:
-        default_region: us-east-1
       - run:
           command: |
               eb init
