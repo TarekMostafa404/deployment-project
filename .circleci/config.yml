@@ -72,8 +72,8 @@ jobs:
           from: bucket/Archive.zip
           to: 's3://fullstack-udagram'
 
-    workflows:
-      udacity project:
-        jobs:
-          - build
-          - deploy
+workflows:
+  udacity project:
+    jobs:
+      - build
+      - deploy
