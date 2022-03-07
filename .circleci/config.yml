@@ -72,6 +72,8 @@ workflows:
   Deployment Project:
     jobs:
       - build
+      - deploy
+
       - deploy:
           requires:
             - build
