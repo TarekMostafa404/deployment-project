@@ -14,21 +14,21 @@ jobs:
       - checkout
       - aws-cli/setup
 
-      # - run:
-      #     name: Frontend Install
-      #     command: npm run frontend:install
+      - run:
+          name: Frontend Install
+          command: npm run frontend:install
 
-      # - run:
-      #     name: Frontend Build
-      #     command: npm run frontend:build
+      - run:
+          name: Frontend Build
+          command: npm run frontend:build
 
       # - run:
       #     name: Frontend Test
       #     command: npm run frontend:test
 
-      # - run:
-      #     name: Backend Install
-      #     command: npm run backend:install
+      - run:
+          name: Backend Install
+          command: npm run backend:install
 
       - run:
           name: Backend Build
