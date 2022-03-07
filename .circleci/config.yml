@@ -42,11 +42,11 @@ jobs:
           command: aws s3 sync ./dist/ s3://fullstack-udagram --delete
 
 workflows:
-  udacity project:
+udacity project:
     jobs:
       - deploy
         requires:
-            - test-and-build
-          filters:
-            branches:
-              only: master
+          - test-and-build
+        filters:
+          branches:
+            only: master
