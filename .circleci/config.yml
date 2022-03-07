@@ -26,11 +26,11 @@ jobs:
 
       - run:
           name: Backend Build
-          command: npm run backend:install
+          command: npm run backend:build
 
-      - run:
-          name: Frontend Deploy
-          command: npm run frontend:deploy
+      # - run:
+      #     name: Frontend Deploy
+      #     command: npm run frontend:deploy
 
       - aws-s3/sync:
           arguments: |
@@ -42,21 +42,6 @@ jobs:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY_BLUE
           from: udagram-frontend/www
           to: 's3://fullstack-udagram/'
-
-  # deploy:
-  #   docker:
-  #     - image: 'cimg/python:3.6'
-  #   steps:
-  #     - checkout
-
-  # - run:
-  #     name: Create a Bucket Directory
-  #     command: mkdir bucket && echo "Hello World" > bucket/build_asset.txt
-
-  # - aws-s3/copy:
-  #     arguments: '--dryrun'
-  #     from: www/build_asset.txt
-  #     to: 's3://fullstack-udagram'
 
 workflows:
   build-and-deploy:
