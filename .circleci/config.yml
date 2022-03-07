@@ -32,7 +32,6 @@ jobs:
           command: npm run backend:build
 
       - aws-s3/sync:
-          name: Frontend Deploy
           arguments: |
             --acl public-read \
             --cache-control "max-age=86400"
