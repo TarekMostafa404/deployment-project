@@ -47,10 +47,10 @@ jobs:
           # to: 's3://fullstack-udagram/'
     
       - run:
+          name: eb set up
           command: |
               eb init
-              eb use AWS_REGION_BLUE
-              eb deploy Udagram-env
+              eb deploy Udagram-env --region us-east-1
               eb status
           working_directory: udagram/www
 
