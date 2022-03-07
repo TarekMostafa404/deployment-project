@@ -71,7 +71,6 @@ jobs:
 workflows:
   udacity project:
     jobs:
-      - build
       - deploy:
           requires:
             - build
