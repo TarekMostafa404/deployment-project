@@ -29,9 +29,9 @@ jobs:
           name: Backend install
           command: npm run backend:install
 
-      - run:
-          name: Backend Test
-          command: npm run backend:test
+      # - run:
+      #     name: Backend Test
+      #     command: npm run backend:test
 
       - run:
           name: Run deploy
