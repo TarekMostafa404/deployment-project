@@ -8,8 +8,6 @@ jobs:
     docker:
       - image: cimg/node:16.14
 
-    # environment:
-    #   CHROME_BIN: /usr/bin/google-chrome
     steps:
       - checkout
       - aws-cli/setup
@@ -34,16 +32,6 @@ jobs:
           name: Frontend Deploy
           command: npm run frontend:deploy
 
-  deploy:
-    docker:
-      - image: 'cimg/python:3.6'
-    steps:
-      - checkout
-
-      # - run:
-      #     name: Create a Bucket Directory
-      #     command: mkdir bucket && echo "Hello World" > bucket/build_asset.txt
-
       - aws-s3/sync:
           arguments: |
             --acl public-read \
@@ -55,18 +43,25 @@ jobs:
           from: udagram-frontend/www
           to: 's3://fullstack-udagram/'
 
-      # - aws-s3/copy:
-      #     arguments: '--dryrun'
-      #     from: www/build_asset.txt
-      #     to: 's3://fullstack-udagram'
+  # deploy:
+  #   docker:
+  #     - image: 'cimg/python:3.6'
+  #   steps:
+  #     - checkout
+
+  # - run:
+  #     name: Create a Bucket Directory
+  #     command: mkdir bucket && echo "Hello World" > bucket/build_asset.txt
+
+  # - aws-s3/copy:
+  #     arguments: '--dryrun'
+  #     from: www/build_asset.txt
+  #     to: 's3://fullstack-udagram'
 
 workflows:
   build-and-deploy:
     jobs:
-      - build
-      - deploy:
-          requires:
-            - build
+      - build:
           filters:
             branches:
               only: master
