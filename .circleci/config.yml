@@ -52,6 +52,7 @@ global:
       - run:
           command: |
               eb init
+              eb use AWS_REGION_BLUE
               eb deploy Udagram-env
               eb status
           working_directory: udagram/www
