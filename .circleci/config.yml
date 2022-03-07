@@ -13,9 +13,6 @@ jobs:
 # parameters:
 #   app-dir:
 #     default: .
-global:
-  default_region: us-east-1
-
     steps:
       - checkout
       - eb/setup
