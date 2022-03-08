@@ -31,9 +31,6 @@ jobs:
           name: Backend Build
           command: npm run backend:build
 
-      - run:
-          name: AWS S3
-          command:
             aws-s3/sync:
             arguments: |
               --acl public-read \
