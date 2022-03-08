@@ -45,4 +45,4 @@ Follow these steps to run the tests.
 
 ## Application Link
 
-- http://fullstack-udagram.s3-website-us-east-1.amazonaws.com
+http://fullstack-udagram.s3-website-us-east-1.amazonaws.com
